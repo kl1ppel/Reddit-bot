@@ -6,7 +6,7 @@ client_id = "id"
 client_secret = "secret"
 username = "user"
 password = "pass"
-user_agent = "testing_api by user"
+user_agent = "testing_api by /u/yourusergoeshere"
 
 # Cria uma nova instância da API do Reddit
 reddit = praw.Reddit(client_id=client_id,
@@ -16,12 +16,12 @@ reddit = praw.Reddit(client_id=client_id,
                      user_agent=user_agent)
 
 # Define as subreddits onde você deseja postar
-subreddits = ["sub1", "sub2"]
+subreddits = ["Subname1", "Subname2"]
 
 # Define as URLs das imagens que você deseja postar
 image_urls = [
-  "imglink1", 
-  "imglink2"
+  "Link1", 
+  "Link2"
 ]
 
 # Mantém um registro das subreddits que não puderam receber um post
@@ -34,7 +34,7 @@ for subreddit_name in subreddits:
         for image_url in image_urls:
             response = requests.head(image_url)
             if response.status_code == 200:
-                submission = subreddit.submit(title="Hey baby slide in my dms x", url=image_url)
+                submission = subreddit.submit(title="textoaqui", url=image_url)
                 if submission.link_flair_text is None and subreddit.flair_enabled:
                     flairs = subreddit.flair.link_templates
                     if len(flairs) > 0:
@@ -48,7 +48,7 @@ for subreddit_name in subreddits:
         for image_url in image_urls:
             response = requests.head(image_url)
             if response.status_code == 200:
-                subreddit.submit(title="Hey baby slide in my dms x", url=image_url)
+                subreddit.submit(title="textoaqui", url=image_url)
                 break
         else:
             print("Nenhuma imagem válida encontrada para a subreddit {}".format(subreddit_name))
@@ -63,5 +63,8 @@ if len(failed_subreddits) > 0:
     print("Não foi possível postar em algumas subreddits:")
     for subreddit_name in failed_subreddits:
         print("- {}".format(subreddit_name))
+    with open("failed_subreddits.txt", "w") as f:
+        f.write("\n".join(failed_subreddits))
+    print("A lista de subreddits que não puderam receber um post foi salva em 'failed_subreddits.txt'.")
 else:
-    print("Todas as subreddits receberam um post com sucesso!")
+    print("Postagem concluída")
