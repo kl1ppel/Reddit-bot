@@ -1,10 +1,9 @@
-# Reddit-bot
-Simple reddit bot for self promoting or even karma farming.
+Reddit-bot
+Bot simples do reddit para autopromoção ou até mesmo para coletar karma.
 
-Just follow the instructions inside the .py and run it.
+Basta seguir as instruções dentro do arquivo .py e executá-lo.
 
+No futuro, pretendo:
 
-
-in the future, i intent to:
-*Implement use of SOCKS5 and other proxies
-*Multi account use
+Implementar o uso de SOCKS5 e outros proxies
+Uso de várias contas.
